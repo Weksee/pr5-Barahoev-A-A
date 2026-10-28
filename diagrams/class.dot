@@ -1,0 +1,13 @@
+digraph ClassDiagram {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+
+    TimesheetAnalyzer [label="{TimesheetAnalyzer|{
+        +parseHours(String): int[]\l
+        +total(int[]): int\l
+        +average(int[]): double\l
+        +overtimeDays(int[]): int\l
+        +weeklyOvertime(int[]): int\l
+        +addRestHours(int[]): int\l
+    }}"];
+}

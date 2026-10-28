@@ -1,0 +1,25 @@
+digraph Activity {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial"];
+
+    start [shape=ellipse, label="Начало"];
+    n1    [shape=parallelogram, label="Получить строку часов"];
+    n2    [label="Разделить строку: split(\";\", -1)"];
+    n3    [shape=diamond, label="Ровно 5 значений?"];
+    n4    [label="Для каждого элемента: проверить regex ^(0|[1-9][0-9]*)$,\nдиапазон [0,16], parseInt → result[i]"];
+    n5    [shape=diamond, label="Все элементы корректны?"];
+    n6    [label="total, average (2 знака),\novertimeDays (>8), weeklyOvertime = max(0, 40 - sum)"];
+    n7    [label="Сформировать отчёт: сумма, среднее,\novertimeDays, weeklyOvertime"];
+    n8    [label="Сформировать сообщение об ошибке\n(с позицией N)"];
+    end   [shape=ellipse, label="Завершение"];
+
+    start -> n1 -> n2 -> n3;
+    n3 -> n4 [label="да"];
+    n3 -> n8 [label="нет"];
+    n4 -> n5;
+    n5 -> n6 [label="да"];
+    n5 -> n8 [label="нет"];
+    n6 -> n7;
+    n7 -> end;
+    n8 -> end;
+}
